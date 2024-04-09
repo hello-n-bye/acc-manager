@@ -62,7 +62,7 @@ if (player) then
     end)
 
     add({ "rejoin", "rj", "rej", "reconnect" }, function()
-        unc.on_queue("loadstring(game:HttpGet(''))()")
+        unc.on_queue("loadstring(game:HttpGet('https://raw.githubusercontent.com/hello-n-bye/acc-manager/main/main.lua'))()")
 
         local gameId = game.PlaceId
         local jobId = game.JobId
