@@ -3,7 +3,7 @@ local dur = tick()
 local prefix = "."
 local commands, aliases = { }, { }
 
-local ver = "1.0 Stable"
+local ver = "1.1 Stable"
 
 local replicatedStorage = game:GetService("ReplicatedStorage")
 local textChat = game:GetService("TextChatService")
@@ -25,7 +25,8 @@ local localPlayer = players.LocalPlayer
 
 local states = {
     ["track"] = false,
-    -- ["spam"] = false
+    -- ["spam"] = false,
+    -- ["velocity"] = 0
 }
 
 local function find(string)
@@ -222,16 +223,49 @@ if (model) then
 
         local dance = table.concat(args, " ")
 
-        if (dance) ~= "1" then
-            players:Chat("/e dance" .. dance)
-        else
+        if (dance) == "1" then
             players:Chat("/e dance")
+        else
+            players:Chat("/e dance" .. dance)
         end
+    end)
+
+    add({ "wave", "hello" }, function()
+        players:Chat("/e wave")
+    end)
+
+    add({ "cheer", "hooray" }, function()
+        players:Chat("/e cheer")
+    end)
+
+    add({ "applaud", "clap" }, function()
+        players:Chat("/e applaud")
+    end)
+
+    add({ "shrug", "idk", "confused" }, function()
+        players:Chat("/e shrug")
+    end)
+
+    add({ "point", "pointout", "punch" }, function()
+        players:Chat("/e point")
+    end)
+
+    add({ "laugh", "excite", "lol" }, function()
+        players:Chat("/e laugh")
+    end)
+
+    add({ "emote", "e" }, function(...)
+        local args = {...}
+        table.remove(args, 1)
+
+        local emote = table.concat(args, " ")
+
+        players:Chat("/e " .. emote)
     end)
 
     add({ "reset", "kill", "oof", "die" }, function()
         local found = index()
-        for i, index in ipairs(found) do
+        for _,index in ipairs(found) do
             local bot = players:GetPlayerByUserId(accounts[index])
             if (bot) then
                 bot.Character.Humanoid.Health = 0
@@ -244,7 +278,7 @@ if (model) then
         table.remove(args, 1)
 
         local found = index()
-        for i, index in ipairs(found) do
+        for _,index in ipairs(found) do
             local bot = players:GetPlayerByUserId(accounts[index])
             if (bot) then
                 message(table.concat(args, " "))
@@ -253,6 +287,15 @@ if (model) then
         end
     end)
 
+    -- add({ "spin", "rotate", "velocity", "vel" }, function(...)
+    --     local args = {...}
+    --     table.remove(args, 1)
+
+    --     local velocity = tonumber(table.concat(args, " "))
+
+
+    -- end)
+    
     add({ "follow", "track", "watch" }, function(...)
         states.track = true
 
@@ -262,7 +305,7 @@ if (model) then
         local target = find(tostring(table.concat(args, " ")))
 
         local found = index()
-        for i, index in ipairs(found) do
+        for _index in ipairs(found) do
             local bot = players:GetPlayerByUserId(accounts[index])
             if (bot) and (bot.Character) and (bot.Character.HumanoidRootPart) then
                 coroutine.wrap(function()
