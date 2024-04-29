@@ -14,11 +14,11 @@ local tween = game:GetService("TweenService")
 
 local chatType = textChat.ChatVersion
 
-local accounts = {5766494813, 5766493543, 5766504015, 5766494759, 5763037307}
+local accounts = {5813623803}
 
 local disallowed = false
 
-local host = 5765935638
+local host = 3104567111
 local model = players:GetPlayerByUserId(host)
 
 local localPlayer = players.LocalPlayer
@@ -291,14 +291,14 @@ if (model) then
         end
     end)
 
-    -- add({ "spin", "rotate", "velocity", "vel" }, function(...)
-    --     local args = {...}
-    --     table.remove(args, 1)
+    add({ "spin", "rotate", "velocity", "vel" }, function(...)
+        local args = {...}
+        table.remove(args, 1)
 
-    --     local velocity = tonumber(table.concat(args, " "))
+        local velocity = tonumber(table.concat(args, " "))
 
 
-    -- end)
+    end)
     
     add({ "follow", "track", "watch" }, function(...)
         states.track = true
